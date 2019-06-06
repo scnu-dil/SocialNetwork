@@ -191,22 +191,7 @@ if __name__ == "__main__":
 	nodes=['0','1','2','3','4','5','6','a','b','c'] 
 	edges=[('0','1',1),('0','5',1),('1','5',1),('1','6',1),('0','5',2),('1','2',3),('1','4',5),('2','1',7),('2','4',6),('a','b',0.5),('b','c',0.5),('c','a',0.5)] 
  	"""
-	from py2neo import Graph
-	from igraph import Graph as IGraph
-	graph = Graph("http://localhost:7474",username="neo4j",password="password")
-	query = '''
-		MATCH (c1:Character)-[r:INTERACTS]->(c2:Character)
-		RETURN c1.name, c2.name, r.weight AS weight
-		'''
-	"""
-	#定义graph 
-	G = nx.Graph() 
-	#G.add_nodes_from(nodes) 
-	G.add_weighted_edges_from(graph.run(query))
-	#print(G.edges)
-	#print(G['Brynden'])
-	"""
-	f = open("/home/jiaqi/something/relationship_count/merge_all.csv","r")
+	f = open("all_edge.csv","r")
 	i = 0
 	j = 0
 	al = list()
@@ -223,10 +208,7 @@ if __name__ == "__main__":
 	f.close()
 	G = nx.Graph()
 	G.add_weighted_edges_from(al)
-	#print(G.edges)
-	#print(G[1])
 	doctw = DOCTW()
-	
 	comm = doctw.execute(G)
 	num = 0
 	temp = set()
@@ -236,33 +218,3 @@ if __name__ == "__main__":
 			num += 1
 			G.nodes[n]["community_doctw"] = i
 	print(set(G.nodes) - temp)
-	"""
-	nodes = [{"name": G.nodes[n],"community_doctw":G.nodes[n]["community_doctw"]} for n in G.nodes]
-	write_clusters_query = '''
-		UNWIND {nodes} AS n
-		MATCH (c:Character) WHERE c.name = n.name
-		SET c.community = toInt(n.community)
-		'''
-
-	graph.run(write_clusters_query, nodes=nodes)
-	
-	G = nx.Graph()
-	#G.add_nodes_from(nodes) 
-	G.add_weighted_edges_from(graph.run(query))
-	doctw._Weight_all(G)
-	#print(G.nodes['Brynden'])
-	for v in G.nodes:
-		doctw._LIV(G,v)
-		print(v,G.nodes[v]["role"])
-	for v in G.nodes:
-		score = doctw._LIV(G,v)
-		if score == 1:
-			print("core node:%s"%str(v))
-			print([c.nodes for c in doctw._ClusterCore(G,v)])
-			for c in doctw._ClusterCore(G,v): 
-				print("-"*30)
-				for v in c.nodes:
-					print(v,c.nodes[v]['role'])
-					#print(G.adj[v])
-				print("-"*30)
-	"""
