@@ -7,6 +7,8 @@ From：[Yu, H., Jiao, P., Wang, G., & Yaoy, Y. (2014). Categorizing Overlapping 
 From:[Wang X, Cui P, Wang J, et al. Community preserving network embedding[C]//Thirty-First AAAI Conference on Artificial Intelligence. 2017 (AAAI).](https://aaai.org/ocs/index.php/AAAI/AAAI17/paper/view/14589/13763)<br> [code](https://github.com/benedekrozemberczki/M-NMF)
 ### 3.A2NMF算法<br>
 From:[Ye, Fanghua, et al. "Adaptive Affinity Learning for Accurate Community Detection." 2018 IEEE International Conference on Data Mining (ICDM). IEEE, 2018.](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8594997)
+### 4.DANMF算法<br>
+From:[Ye, Fanghua, Chuan Chen, and Zibin Zheng. "Deep autoencoder-like nonnegative matrix factorization for community detection." Proceedings of the 27th ACM International Conference on Information and Knowledge Management. ACM, 2018.](https://sci-hub.tw/10.1145/3269206.3271697)<br> [code](https://github.com/benedekrozemberczki/DANMF)
 ## KeyNodeDetection
 ### ...
 ## 依赖环境
